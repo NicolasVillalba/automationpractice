@@ -5,13 +5,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class WikiArticlePage {
+public class WikiArticlePage extends BasePage {
 
 	@FindBy(id = "firstHeading")
 	private WebElement firstHeading;
 
 	public WikiArticlePage(WebDriver driver) {
-		PageFactory.initElements(driver, this);
+		super(driver);
 	}
 
 	public String getFirstHeadingText() {
