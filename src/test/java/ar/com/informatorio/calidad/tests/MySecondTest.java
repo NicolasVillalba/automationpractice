@@ -5,6 +5,7 @@ import static org.testng.Assert.assertEquals;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import ar.com.informatorio.calidad.Exceptions.ReflectionConstrutorInvocationException;
 import ar.com.informatorio.calidad.pages.GoogleResultPage;
 import ar.com.informatorio.calidad.pages.GoogleSearchPage;
 import ar.com.informatorio.calidad.pages.WikiArticlePage;
@@ -12,7 +13,7 @@ import io.github.bonigarcia.wdm.ChromeDriverManager;
 
 public class MySecondTest {
 
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException, ReflectionConstrutorInvocationException {
 		WebDriver driver = null;
         try {
 		ChromeDriverManager.getInstance().setup();
