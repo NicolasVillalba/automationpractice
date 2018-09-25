@@ -1,4 +1,6 @@
 /target/
+/test-output/
+/bin/
 # eclipse project file
 .settings/
 .classpath
