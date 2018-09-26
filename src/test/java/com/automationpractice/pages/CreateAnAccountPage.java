@@ -62,10 +62,19 @@ public class CreateAnAccountPage extends BasePage {
 	
 	private WebElement submitAccount;
 	
-	public Boolean yourPersoncalInfomationSection(String text) {	
-		//TODO create a verification for the text in the sub-heading
-		//tobe YOUR PERSONAL INFORMATION
-		return false;
+	@FindBy(xpath="(//h3[@class=\"page-subheading\"])[1]")
+	private WebElement pageSubHeading1;
+		
+	@FindBy(xpath="(//h3[@class=\"page-subheading\"])[2]")
+	private WebElement pageSubHeading2;
+	
+	/**
+	 * Check the text for the sub-heading in the first section
+	 * @param text
+	 * @return
+	 */
+	public Boolean sectionOneHeadingIs(String text) {	
+		return this.pageSubHeading1.getText().equals(text);
 	}
 	
 	public CreateAnAccountPage(WebDriver driver) {
@@ -158,9 +167,8 @@ public class CreateAnAccountPage extends BasePage {
 		String d = Integer.toString(date.getDayOfMonth());
 		String m = Integer.toString(date.getMonth().getValue());
 		String y = Integer.toString(date.getYear());
-		this.setRadios(d, m, y);
+		this.setSelects(d, m, y);
 		return this;
-		
 	}
 	
 	/**
@@ -173,7 +181,7 @@ public class CreateAnAccountPage extends BasePage {
 		String d = Integer.toString(date.getDayOfMonth());
 		String m = Integer.toString(date.getMonth().getValue());
 		String y = Integer.toString(date.getYear());
-		this.setRadios(d, m, y);
+		this.setSelects(d, m, y);
 		return this;
 		
 	}
@@ -187,11 +195,11 @@ public class CreateAnAccountPage extends BasePage {
 		String d = Integer.toString(date.getDayOfMonth());
 		String m = Integer.toString(date.getMonth().getValue());
 		String y = Integer.toString(date.getYear());
-		this.setRadios(d, m, y);
+		this.setSelects(d, m, y);
 		return this;
 	}
 	
-	private void setRadios(String day, String month, String year) {
+	private void setSelects(String day, String month, String year) {
 		List<Select> selects = this.dateOfBirth
 				.stream()
 				.map(Select::new)
@@ -226,9 +234,13 @@ public class CreateAnAccountPage extends BasePage {
 		return this;
 	}
 	
-	public Boolean yourAddressSection(String text) {
-		//TODO: look for the title in the second sub-heading
-		return false;
+	/**
+	 * Check the subHeading of the second section
+	 * @param text
+	 * @return
+	 */
+	public Boolean sectionTwoHeadingIs(String text) {
+		return this.pageSubHeading2.getText().equals(text);
 	}
 	
 	public CreateAnAccountPage enterAddress(String address) {
