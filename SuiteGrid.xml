@@ -1,0 +1,50 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="AutomationPractice" verbose="1" parallel="tests"
+	thread-count="5">
+
+	<test name="Using chrome on Windows">
+		<parameter name="browser" value="remoteWindowsChrome" />
+		<classes>
+			<class
+				name="com.automationpractice.tests.RegistrationAndLoginTests">
+			</class>
+			<class
+				name="ar.com.informatorio.calidad.tests.SearchingCitiesTest">
+			</class>
+		</classes>
+	</test>
+
+	<test name="Using chrome on Linux">
+		<parameter name="browser" value="remoteLinuxChrome" />
+		<classes>
+			<class
+				name="com.automationpractice.tests.RegistrationAndLoginTests">
+			</class>
+			<class
+				name="ar.com.informatorio.calidad.tests.SearchingCitiesTest">
+			</class>
+		</classes>
+	</test>
+	<test name="Using Firefox on Linux">
+		<parameter name="browser" value="remoteLinuxFirefox" />
+		<classes>
+			<class
+				name="com.automationpractice.tests.RegistrationAndLoginTests">
+			</class>
+			<class
+				name="ar.com.informatorio.calidad.tests.SearchingCitiesTest">
+			</class>
+		</classes>
+	</test>
+	<test name="Using Firefox on Windows">
+		<parameter name="browser" value="remoteWindowsFirefox" />
+		<classes>
+			<class
+				name="com.automationpractice.tests.RegistrationAndLoginTests">
+			</class>
+			<class
+				name="ar.com.informatorio.calidad.tests.SearchingCitiesTest">
+			</class>
+		</classes>
+	</test>
+</suite>
