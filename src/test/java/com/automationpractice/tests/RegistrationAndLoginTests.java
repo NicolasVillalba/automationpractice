@@ -20,13 +20,8 @@ import ar.com.informatorio.calidad.tests.BaseTest;
 public class RegistrationAndLoginTests extends BaseTest {
 
 	private String email;
-
-	@BeforeMethod
-	public void setUp() {
-		this.driver.get("http://automationpractice.com/index.php");
-	}
 	
-	@Test(enabled = false, testName = "Registration Test")
+	@Test(enabled = true, testName = "Registration Test")
 	public void firstStep() throws InterruptedException, ReflectionConstrutorInvocationException {
 		
 		StringJoiner joinstring = new StringJoiner("_");
