@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /target/
 /test-output/
 /bin/
@@ -5,3 +6,29 @@
 .settings/
 .classpath
 .project
+=======
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Intellij
+.idea/
+*.iml
+*.iws
+
+# Mac
+.DS_Store
+
+# Maven
+log/
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+>>>>>>> 3427a9155bbc96fab9ca70ce3465cad77edf3545
