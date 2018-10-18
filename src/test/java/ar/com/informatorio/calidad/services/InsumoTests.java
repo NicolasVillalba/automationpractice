@@ -15,7 +15,7 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.expect;
 import static org.testng.Assert.assertNotNull;
 
-public class IinsumoTests {
+public class InsumoTests {
 
     private Product product;
 
@@ -77,7 +77,7 @@ public class IinsumoTests {
                 .and().body(equalTo("{\"mensaje\":\"El insumo se ha agregado\"}"));
     }
 
-    @Test(description = "exercise 4", priority = 2)
+    @Test(description = "exercise 4", dependsOnMethods = {"addItemUsingDTOInPayloadTest"})
     public void obtainTheItemAddedWithQueryParamTest(){
 
         given().queryParam("id", this.product.getId())
@@ -88,7 +88,7 @@ public class IinsumoTests {
 
     }
 
-    @Test(priority = 2)
+    @Test(dependsOnMethods = {"addItemUsingDTOInPayloadTest"})
     public void checkTheIdOfTheItemUsingPathParamTest(){
         expect()
                 .body("id", equalTo(14))
@@ -98,7 +98,7 @@ public class IinsumoTests {
                 .get("/14");
     }
 
-    @Test(description = "exercise 5")
+    @Test(description = "exercise 5", dependsOnMethods = {"addItemUsingDTOInPayloadTest"})
     public void deleteProductByIdTest(){
 
         given().pathParam("id", this.product.getId())
