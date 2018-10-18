@@ -1,10 +1,7 @@
 package ar.com.informatorio.calidad.services;
 
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
 import static org.hamcrest.Matchers.equalTo;
-
-import java.util.List;
 
 import ar.com.informatorio.calidad.domain.Product;
 import io.restassured.http.ContentType;
@@ -26,20 +23,17 @@ public class IinsumoTests {
     public void setUp(){
         RestAssured.baseURI = "http://localhost";
         RestAssured.port = 3000;
-        RestAssured.basePath = "/api/product";
+        RestAssured.basePath = "/api/insumo";
         this.product = new Product(14, "Mouse", 5);
 
     }
 
     @Test(description = "exercise 1")
     public void obtainAllItemsTest(){
-        Response response = given().get();
-        assertEquals(response.statusCode(), 200);
-        JsonPath jsonPath = response.jsonPath();
-        assertNotNull(jsonPath);
-        assertEquals(jsonPath.getInt("products[1].id"), 2);
-        assertEquals(jsonPath.getString("products[1].nombre"), "CPU");
-        assertEquals(jsonPath.getInt("products[1].cant"), 3);
+        expect().statusCode(200)
+                .and().body("insumos[1].id", equalTo(2))
+                    .when()
+                        .get();
     }
 
     @Test(description = "exercise 1 bis")
@@ -47,11 +41,11 @@ public class IinsumoTests {
         expect()
                 .statusCode(200)
 
-                .and().body("products[1].id", equalTo(2))
+                .and().body("insumos[1].id", equalTo(2))
 
-                .and().body("products[1].nombre", equalTo("CPU"))
+                .and().body("insumos[1].nombre", equalTo("papel A4"))
 
-                .and().body("products[1].cant", equalTo(3))
+                .and().body("insumos[1].cantidad", equalTo(5))
 
                     .when()
 
@@ -61,14 +55,14 @@ public class IinsumoTests {
     @Test(description = "exercise 2")
     public void obtainTheThirdItemUsingPathParamTest(){
         Response response = given()
-                .pathParam("pId", "3")
+                .pathParam("pId", "2")
                 .get("/{pId}");
 
         JsonPath json = response.jsonPath();
 
-        assertEquals(json.getInt("id"), 3);
-        assertEquals(json.getString("nombre"), "teclado");
-        assertEquals(json.getInt("cant"), 20);
+        assertEquals(json.getInt("id"), 2);
+        assertEquals(json.getString("nombre"), "papel A4");
+        assertEquals(json.getInt("cantidad"), 5);
     }
 
     @Test(description = "exercise 3")
@@ -78,12 +72,12 @@ public class IinsumoTests {
 
                 .when().post()
 
-                .then().statusCode(200)
+                .then().statusCode(201)
 
-                .and().body(equalTo("{\"message\":\"El producto se ha recibido\"}"));
+                .and().body(equalTo("{\"mensaje\":\"El insumo se ha agregado\"}"));
     }
 
-    @Test(description = "exercise 4")
+    @Test(description = "exercise 4", priority = 2)
     public void obtainTheItemAddedWithQueryParamTest(){
 
         given().queryParam("id", this.product.getId())
@@ -94,7 +88,7 @@ public class IinsumoTests {
 
     }
 
-    @Test
+    @Test(priority = 2)
     public void checkTheIdOfTheItemUsingPathParamTest(){
         expect()
                 .body("id", equalTo(14))
